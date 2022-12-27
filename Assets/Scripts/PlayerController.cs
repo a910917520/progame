@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Stats stats;
+
+
     public GameObject arrow;
     public GameObject wind_arrow;
     public GameObject ice_arrow;
@@ -11,14 +14,11 @@ public class PlayerController : MonoBehaviour
     private float canArrowFire;
     private float canWindArrowFire;
     private float canIceArrowFire;
-    private float canHit;
 
     //ª±®aÁ`¼Æ­È
-    public float speed = GameData.player_speed;
+    
+
     public float fireRate = GameData.player_fireRate;
-    public float hitRate = 0.5f;
-    public float player_health = GameData.player_health;
-    public static float player_damage = GameData.player_damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,9 +56,18 @@ public class PlayerController : MonoBehaviour
         }
         */
         Rigidbody2D rd2d = GetComponent<Rigidbody2D>();
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        rd2d.velocity = new Vector3(h, v, 0) * speed;
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        if (horizontal > 0)
+        {
+            renderer.flipX = true;
+        }
+        else if (horizontal < 0)
+        {
+            renderer.flipX = false;
+        }
+        rd2d.velocity = new Vector3(horizontal, vertical, 0) * stats.speed;
     }
     void Attack()
     {
@@ -100,27 +109,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            if (Time.time - canHit > 1 / hitRate)
-            {
-                float enemyDamage = collision.GetComponent<EnemyAI>().enemyDamage;
-                onHit(enemyDamage);
-                canHit = Time.time;
-                if (player_health <= 0)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
-    }
-    public float onHit(float damage)
-    {
-        player_health = player_health - damage;
-        return player_health;
-    }
+
     void Interact()
     {
         if (Input.GetKeyDown(KeyCode.E))

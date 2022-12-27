@@ -45,24 +45,6 @@ public class EnemyAI : MonoBehaviour
     {
         return waypoint;
     }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Arrow")
-        {
-            Debug.Log("HIT ENEMY");
-            enemyOnHit();
-            Destroy(collision.gameObject);
-        }
-    }
-    public float enemyOnHit()
-    {
-        enemyHealth -= PlayerController.player_damage;
-        if (enemyHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
-        return enemyHealth;
-    }
     void Chase()
     {
         if (Vector3.Distance(player.transform.position, transform.position) < 5)
