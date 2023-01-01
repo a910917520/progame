@@ -58,6 +58,7 @@ public class Stats : MonoBehaviour
                         {
                             GetHit(GameObject.Find("Player").GetComponent<Stats>().Hit(hp));
                             canHit = Time.time;
+                            Destroy(collision.gameObject);
                             if (hp <= 0)
                             {
                                 gameObject.SetActive(false);
@@ -68,6 +69,7 @@ public class Stats : MonoBehaviour
                 else
                 {
                     GetHit(GameObject.Find("Player").GetComponent<Stats>().Hit(hp));
+                    Destroy(collision.gameObject);
                     if (hp <= 0)
                     {
                         gameObject.SetActive(false);

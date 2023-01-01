@@ -13,6 +13,6 @@ public class PositionRenderSorter : MonoBehaviour
     }
     void LateUpdate()
     {
-        myRenderer.sortingOrder = (int)(sortingOrderBase - transform.position.y);
+
     }
 }
