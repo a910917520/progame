@@ -59,14 +59,14 @@ public class PlayerController : MonoBehaviour
         SpriteRenderer renderer = GetComponent<SpriteRenderer>();
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        if (horizontal > 0)
+        /*if (horizontal > 0)
         {
             renderer.flipX = true;
         }
         else if (horizontal < 0)
         {
             renderer.flipX = false;
-        }
+        }*/
         rd2d.velocity = new Vector3(horizontal, vertical, 0) * stats.speed;
     }
     void Attack()

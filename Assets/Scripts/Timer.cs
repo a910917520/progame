@@ -66,7 +66,8 @@ public class Timer : MonoBehaviour
             isSafe = true;
             //傳送到安全區
             player.transform.position = new Vector2(43, -21.5f);
-            currentTime = 30; //安全區持續秒數
+            currentTime = 99999; //安全區持續秒數
+            timerText.enabled = false;
             timerText.color = Color.green;
             //離開安全區
             stage++;
