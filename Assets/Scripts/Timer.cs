@@ -14,7 +14,11 @@ public class Timer : MonoBehaviour
 
     public GameObject player;
     public GameObject[] enemySpawnPoints;
-    public GameObject enemy1, enemy2, enemy3, tanklv1, speedlv1;
+    public GameObject smallLv1, middleLv1, largeLv1, tankLv1, speedLv1;
+    public GameObject smallLv2, middleLv2, largeLv2, tankLv2, speedLv2;
+    public GameObject smallLv3, middleLv3, largeLv3, tankLv3, speedLv3;
+    public GameObject smallLv4, middleLv4, largeLv4, tankLv4, speedLv4;
+    public GameObject smallLv5, middleLv5, largeLv5, tankLv5, speedLv5;
     private int stage;
     private bool isSafe;
     private int enemyCount;
@@ -76,7 +80,7 @@ public class Timer : MonoBehaviour
             player.transform.position = new Vector2(-18, -0.3f);
             if (stage == 1)
             {
-                currentTime = 30;
+                currentTime = 60;
                 stageText.text = ("Stage " + stage);
                 Stage_1();
                 isSafe = false;
@@ -99,10 +103,10 @@ public class Timer : MonoBehaviour
     }
     void Stage_1()
     {
-        StartCoroutine(spawnEnemy(1, enemy1, enemySpawnPoints[0]));
-        StartCoroutine(spawnEnemy(4, enemy2, enemySpawnPoints[0]));
-        StartCoroutine(spawnEnemy(30, tanklv1, enemySpawnPoints[0]));
-        StartCoroutine(spawnEnemy(8, speedlv1, enemySpawnPoints[0]));
+        StartCoroutine(spawnEnemy(1, smallLv1, enemySpawnPoints[0]));
+        StartCoroutine(spawnEnemy(4, middleLv1, enemySpawnPoints[0]));
+        StartCoroutine(spawnEnemy(30, tankLv1, enemySpawnPoints[0]));
+        StartCoroutine(spawnEnemy(8, speedLv1, enemySpawnPoints[0]));
     }
     void Stage_2()
     {

@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55250002138839714, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.72
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 55250002138839714, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 55250002138839714, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
       propertyPath: m_LocalPosition.z
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 55250002138839742, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
       propertyPath: m_Name
-      value: Enemy1
+      value: smallLv2
       objectReference: {fileID: 0}
     - target: {fileID: 9105775448429127083, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
       propertyPath: hp
@@ -65,6 +65,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9105775448429127083, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
       propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105775448429127083, guid: 10b7796ff5db8e940bf5f1d641d03587, type: 3}
+      propertyPath: damage
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
