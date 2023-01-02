@@ -69,6 +69,7 @@ public class Timer : MonoBehaviour
             isSafe = true;
             player.transform.position = new Vector2(43, -21.5f);
             currentTime = 99999; //安全區持續秒數
+            player.GetComponent<Stats>().Heal();
             timerText.enabled = false;
             stage++;
         }

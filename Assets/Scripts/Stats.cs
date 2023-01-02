@@ -10,7 +10,22 @@ public class Stats : MonoBehaviour
     [SerializeField] public float speed;
     [SerializeField] private float score;
     [SerializeField] private float hitRate;
+    [SerializeField] private float fireRate;
     private float canHit;
+
+    private void Awake()
+    {
+        maxHp = hp;
+    }
+    private void Update()
+    {
+        if (this.gameObject.tag == ("Player"))
+        {
+            GameData.UpdataStats(out maxHp,out damage,out speed,out fireRate);
+        }
+        FixHealth();
+    }
+
     private float Hit(float hp)
     {
         hp = hp - damage;
@@ -33,22 +48,25 @@ public class Stats : MonoBehaviour
     {
         score = this.score;
     }
-
-    private void GetItem(bool item)
+    public void Heal()
     {
-        item = true;
+        hp = maxHp;
     }
-
-
-
-
-
-
-
-
-
-
-
+    public float GetFireRate()
+    {
+        return fireRate;
+    }
+    private void FixHealth()
+    {
+        if (hp > maxHp)
+        {
+            hp = maxHp;
+        }
+        if (hp < 0)
+        {
+            hp = 0;
+        }
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (this.gameObject.tag == "Player" || this.gameObject.tag == "Altar")

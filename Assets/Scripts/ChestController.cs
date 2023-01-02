@@ -19,7 +19,7 @@ public class ChestController : MonoBehaviour
     {
         isOpen = false;
         gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-        int item = Random.Range(1, 5);
+        int item = Random.Range(1, 4);
         if (item == 1) //月之指
         {
             if (GameData.item1_lv <= 4)
@@ -35,8 +35,9 @@ public class ChestController : MonoBehaviour
             if (GameData.item2_lv <= 4)
             {
                 GameData.item2_lv++;
-                GameData.hp_bonus = GameData.hp_bonus + 1;
+                GameData.hp_bonus = GameData.hp_bonus + 10;
                 GameData.Updata();
+
                 Debug.Log("獲得" + item + "(Lv." + GameData.item2_lv + ")");
             }
         }
@@ -47,6 +48,7 @@ public class ChestController : MonoBehaviour
                 GameData.item3_lv++;
                 GameData.speed_bonus = GameData.speed_bonus + 1;
                 GameData.Updata();
+
                 Debug.Log("獲得" + item + "(Lv." + GameData.item3_lv + ")");
             }
         }
@@ -55,12 +57,13 @@ public class ChestController : MonoBehaviour
             if (GameData.item4_lv <= 4)
             {
                 GameData.item4_lv++;
-                GameData.fireRate_bonus = GameData.fireRate_bonus + 10;
+                GameData.fireRate_bonus = GameData.fireRate_bonus + 0.1f;
                 GameData.Updata();
+
                 Debug.Log("獲得" + item + "(Lv." + GameData.item4_lv + ")");
             }
         }
-        if (item == 5) //月之耳
+        /*if (item == 5) //月之耳
         {
             if (GameData.item2_lv <= 4)
             {
@@ -69,6 +72,6 @@ public class ChestController : MonoBehaviour
                 GameData.Updata();
                 Debug.Log("獲得" + item + "(Lv." + GameData.item5_lv + ")");
             }
-        }
+        }*/
     }
 }

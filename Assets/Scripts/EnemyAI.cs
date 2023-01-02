@@ -39,14 +39,14 @@ public class EnemyAI : MonoBehaviour
     }
     void Chase()
     {
-        if (Vector3.Distance(altar.transform.position, transform.position) < 4)
+        if (GameObject.Find("Altar") != null&& Vector3.Distance(altar.transform.position, transform.position) < 4)
         {
             Vector3 direction = (altar.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GetComponent<Rigidbody2D>().rotation = angle;
             GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
         }
-        else if (Vector3.Distance(player.transform.position, transform.position) < 3)
+        else if (GameObject.Find("Player") != null&& Vector3.Distance(player.transform.position, transform.position) < 3)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
         {
             currentWP++;
         }
-        else if (currentWP == 1)
+        else if (currentWP == 1 && GameObject.Find("Altar") != null)
         {
             Vector3 direction = (altar.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

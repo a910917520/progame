@@ -15,20 +15,21 @@ public class PlayerController : MonoBehaviour
     private float canWindArrowFire;
     private float canIceArrowFire;
 
-    //ª±®aÁ`¼Æ­È
-    
 
-    public float fireRate = GameData.player_fireRate;
+
+    public float fireRate;
     // Start is called before the first frame update
     void Start()
     {
         GameData.windArrow = true;
         GameData.iceArrow = true;
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        fireRate = gameObject.GetComponent<Stats>().GetFireRate();
         PlayerControl();
         Attack();
         WindAttack();
