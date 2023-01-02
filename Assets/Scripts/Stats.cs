@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField] private float maxHp;
     [SerializeField] private float hp;
     [SerializeField] private float damage;
     [SerializeField] public float speed;
@@ -19,6 +20,35 @@ public class Stats : MonoBehaviour
     {
         this.hp = hp;
     }
+    public void GetHealthGUI(out float hp,out float maxHp)
+    {
+        hp = this.hp;
+        maxHp = this.maxHp;
+    }
+    private void GetScore(float score)
+    {
+        this.score += score;
+    }
+    public void ScoreGUI(out float score)
+    {
+        score = this.score;
+    }
+
+    private void GetItem(bool item)
+    {
+        item = true;
+    }
+
+
+
+
+
+
+
+
+
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (this.gameObject.tag == "Player" || this.gameObject.tag == "Altar")
@@ -61,7 +91,7 @@ public class Stats : MonoBehaviour
                             Destroy(collision.gameObject);
                             if (hp <= 0)
                             {
-                                
+                                GameObject.Find("Player").GetComponent<Stats>().GetScore(score);
                                 gameObject.SetActive(false);
                                 Invoke("DestoryObject", 2f);
                             }
@@ -74,6 +104,7 @@ public class Stats : MonoBehaviour
                     Destroy(collision.gameObject);
                     if (hp <= 0)
                     {
+                        GameObject.Find("Player").GetComponent<Stats>().GetScore(score);
                         gameObject.SetActive(false);
                         Invoke("DestroyObject", 2f);
                     }
