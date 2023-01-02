@@ -21,7 +21,7 @@ public class Stats : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (this.gameObject.tag == "Player")
+        if (this.gameObject.tag == "Player" || this.gameObject.tag == "Altar")
         {
             if (collision.gameObject.tag == "Enemy")
             {
