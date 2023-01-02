@@ -25,7 +25,6 @@ public class Timer : MonoBehaviour
         stage = 1;
         countDown = true;
         isSafe = true;
-        enemySpawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
     }
 
     // Update is called once per frame

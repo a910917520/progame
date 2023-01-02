@@ -39,12 +39,20 @@ public class EnemyAI : MonoBehaviour
     }
     void Chase()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < 5)
+        if (Vector3.Distance(altar.transform.position, transform.position) < 4)
+        {
+            Vector3 direction = (altar.transform.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            GetComponent<Rigidbody2D>().rotation = angle;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+        }
+        else if (Vector3.Distance(player.transform.position, transform.position) < 3)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GetComponent<Rigidbody2D>().rotation = angle;
             GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+            currentWP = 1;
         }
         else if (currentWP == 0 && Vector3.Distance(waypoint.transform.position, transform.position) > preDistance)
         {
