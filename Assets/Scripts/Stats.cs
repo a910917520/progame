@@ -61,7 +61,9 @@ public class Stats : MonoBehaviour
                             Destroy(collision.gameObject);
                             if (hp <= 0)
                             {
+                                
                                 gameObject.SetActive(false);
+                                Invoke("DestoryObject", 2f);
                             }
                         }
                     }
@@ -73,8 +75,13 @@ public class Stats : MonoBehaviour
                     if (hp <= 0)
                     {
                         gameObject.SetActive(false);
+                        Invoke("DestroyObject", 2f);
                     }
                 }
         }
+    }
+    void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }

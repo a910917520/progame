@@ -14,6 +14,7 @@ public class GameButton : MonoBehaviour
     }
     public void QuitSafeZone()
     {
+        if (timer.stage <= 5) 
         timerText.enabled = true;
         timer.currentTime = 0;
     }
