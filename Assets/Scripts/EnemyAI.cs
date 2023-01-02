@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject altar;
-    public GameObject waypoint;
-    public EnemyScriptableObject enemyData;
-    public float enemyHealth;
-    public float enemyDamage;
-    public float enemySpeed;
-    public float enemyScore;
+    private GameObject player;
+    private GameObject altar;
+    private GameObject waypoint;
+    private float speed;
 
     private int currentWP = 0;
-    public float rotSpeed = 1;
     public float preDistance = 0.5f;
     // Start is called before the first frame update
     void Start()
@@ -22,10 +17,7 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Player");
         altar = GameObject.Find("Altar");
         waypoint = GameObject.Find("Waypoint");
-        enemyHealth = enemyData.enemyHealth;
-        enemyDamage = enemyData.enemyDamage;
-        enemySpeed = enemyData.enemySpeed;
-        enemyScore = enemyData.enemyScore;
+        speed = gameObject.GetComponent<Stats>().speed;
     }
 
     // Update is called once per frame
@@ -52,14 +44,14 @@ public class EnemyAI : MonoBehaviour
             Vector3 direction = (player.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * enemySpeed;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
         }
         else if (currentWP == 0 && Vector3.Distance(waypoint.transform.position, transform.position) > preDistance)
         {
             Vector3 direction = (waypoint.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * enemySpeed;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
         }
         else if (currentWP == 0)
         {
@@ -70,7 +62,7 @@ public class EnemyAI : MonoBehaviour
             Vector3 direction = (altar.transform.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * enemySpeed;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
         }
     }
 }

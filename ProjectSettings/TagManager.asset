@@ -7,6 +7,7 @@ TagManager:
   - Arrow
   - EnemySpawnPoint
   - Enemy
+  - Altar
   layers:
   - Default
   - TransparentFX
