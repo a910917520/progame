@@ -10,6 +10,8 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI enemyLeftText;
     public float currentTime;
     public bool countDown;
+    public GameObject cam1;
+    public GameObject cam2;
 
 
     public GameObject player;
@@ -67,7 +69,9 @@ public class Timer : MonoBehaviour
         if (!isSafe && enemyCount <= 0)
         {
             isSafe = true;
+            cam1.SetActive(false);
             player.transform.position = new Vector2(43, -21.5f);
+            cam2.SetActive(true);
             currentTime = 99999; //安全區持續秒數
             player.GetComponent<Stats>().Heal();
             timerText.enabled = false;
@@ -76,7 +80,9 @@ public class Timer : MonoBehaviour
         else if (isSafe)
         {
             timerText.color = Color.red;
+            cam2.SetActive(false);
             player.transform.position = new Vector2(-18, -0.3f);
+            cam1.SetActive(true);
             if (stage == 1)
             {
                 currentTime = 60;
