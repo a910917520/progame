@@ -12,6 +12,8 @@ public class Stats : MonoBehaviour
     [SerializeField] private float hitRate;
     [SerializeField] private float fireRate;
     private float canHit;
+    private bool isPoison;
+    private bool isSlow;
 
     private void Awake()
     {
@@ -25,7 +27,14 @@ public class Stats : MonoBehaviour
         }
         FixHealth();
     }
-
+    public float GetDamage()
+    {
+        return damage;
+    }
+    private void TakeDamage(float damage)
+    {
+        hp -= damage;
+    }
     private float Hit(float hp)
     {
         hp = hp - damage;
@@ -67,7 +76,7 @@ public class Stats : MonoBehaviour
             hp = 0;
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.gameObject.tag == "Player" || this.gameObject.tag == "Altar")
         {
@@ -104,9 +113,34 @@ public class Stats : MonoBehaviour
                     {
                         if (GameObject.Find("Player") != null)
                         {
-                            GetHit(GameObject.Find("Player").GetComponent<Stats>().Hit(hp));
+                            float multiplier = collision.gameObject.GetComponent<ArrowStats>().GetMultiplier();
+                            float playerDamage = GameObject.Find("Player").GetComponent<Stats>().GetDamage();
+                            float finalDamage = playerDamage * multiplier;
+                            //½b¥Ú¶Ë®`
+                            TakeDamage(finalDamage);
                             canHit = Time.time;
-                            Destroy(collision.gameObject);
+                            if (collision.gameObject.GetComponent<ArrowStats>().IsEffect())
+                            {
+                                if (hp > 0)
+                                {
+                                    if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 0 && !isPoison)
+                                    {
+                                        StartCoroutine(Poison(finalDamage));
+                                    }
+                                    if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 1 && !isSlow)
+                                    {
+                                        StartCoroutine(Slow(GameData.IceArrow_lv));
+                                    }
+                                }
+                                if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 2)
+                                {
+                                    Explosion(collision.gameObject, finalDamage* 0.5f + (GameData.SummerArrow_lv - 1));
+                                }
+                            }
+                            if (!collision.gameObject.GetComponent<ArrowStats>().IsPenetrate())
+                            {
+                                Destroy(collision.gameObject);
+                            }
                             if (hp <= 0)
                             {
                                 GameObject.Find("Player").GetComponent<Stats>().GetScore(score);
@@ -118,8 +152,35 @@ public class Stats : MonoBehaviour
                 }
                 else
                 {
-                    GetHit(GameObject.Find("Player").GetComponent<Stats>().Hit(hp));
-                    Destroy(collision.gameObject);
+                    float multiplier = collision.gameObject.GetComponent<ArrowStats>().GetMultiplier();
+                    float playerDamage = GameObject.Find("Player").GetComponent<Stats>().GetDamage();
+                    float finalDamage = playerDamage * multiplier;
+                    Debug.Log("Deal " + finalDamage + " damage.");
+                    //½b¥Ú¶Ë®`
+                    TakeDamage(finalDamage);
+                    if (collision.gameObject.GetComponent<ArrowStats>().IsEffect())
+                    {
+                        if (hp > 0)
+                        {
+                            if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 0 && !isPoison)
+                            {
+                                StartCoroutine(Poison(finalDamage));
+                            }
+                            if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 1 && !isSlow)
+                            {
+                                StartCoroutine(Slow(GameData.IceArrow_lv));
+                            }
+                        }
+                        if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 2)
+                        {
+                            Explosion(collision.gameObject, finalDamage * (0.5f + (GameData.SummerArrow_lv - 1)));
+                        }
+                    }
+                    if (!collision.gameObject.GetComponent<ArrowStats>().IsPenetrate())
+                    {
+                        Destroy(collision.gameObject);
+                    }
+
                     if (hp <= 0)
                     {
                         GameObject.Find("Player").GetComponent<Stats>().GetScore(score);
@@ -132,5 +193,36 @@ public class Stats : MonoBehaviour
     void DestroyObject()
     {
         Destroy(gameObject);
+    }
+    IEnumerator Poison(float damage)
+    {
+        while (hp > 0)
+        {
+            hp -= damage;
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    IEnumerator Slow(float time)
+    {
+        float originSpeed = speed;
+        speed = speed * 0.5f;
+        yield return new WaitForSeconds(time);
+        speed = originSpeed;
+    }
+    void Explosion(GameObject arrow, float damage)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(arrow.transform.position, 1.6f);
+        foreach(Collider2D enemy in colliders)
+        {
+            if (enemy.tag == ("Enemy"))
+            {
+                enemy.GetComponent<Stats>().TakeDamage(damage);
+                if (enemy.GetComponent<Stats>().hp <= 0)
+                {
+                    enemy.gameObject.SetActive(false);
+                    Invoke("DestroyObject", 2f);
+                }
+            }
+        }
     }
 }

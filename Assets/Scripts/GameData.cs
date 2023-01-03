@@ -29,6 +29,20 @@ static class GameData
     public static int item4_lv = 0;
     //public static int item5_lv = 0;
 
+    public static float Arrow_lv = 0;
+    public static float WindArrow_lv = 0;
+    public static float LightningArrow_lv = 0;
+    public static float FireArrow_lv = 0;
+    public static float IceArrow_lv = 0;
+    public static float SpringArrow_lv = 0;
+    public static float SummerArrow_lv = 0;
+    public static float AutumnArrow_lv = 0;
+    public static float WinterArrow_lv = 0;
+    public static float SunArrow_lv = 0;
+    public static float MoonArrow_lv = 0;
+    public static float StarArrow_lv = 0;
+
+
     //equipments
     public static bool windArrow = false;
     public static bool iceArrow = false;

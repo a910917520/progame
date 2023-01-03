@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2694086453747502603, guid: 453576f594330e24d82e1f42e64209b2, type: 3}
       propertyPath: m_Name
-      value: tank
+      value: tankLv5
       objectReference: {fileID: 0}
     - target: {fileID: 2694086453747502615, guid: 453576f594330e24d82e1f42e64209b2, type: 3}
       propertyPath: m_RootOrder
@@ -67,5 +67,6 @@ PrefabInstance:
       propertyPath: damage
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7674258334770444521, guid: 453576f594330e24d82e1f42e64209b2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 453576f594330e24d82e1f42e64209b2, type: 3}
