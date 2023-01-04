@@ -379,7 +379,6 @@ public class Timer : MonoBehaviour
     }
     IEnumerator spawnEnemy(float delay, float time, float interval, GameObject enemy, GameObject spawnPoint)
     {
-
         while (delay>0)
         {
             delay--;
@@ -389,7 +388,8 @@ public class Timer : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
             time -= interval;
-            Instantiate(enemy, spawnPoint.transform.position, Quaternion.identity);
+            if (enemyCount <= 100)
+                Instantiate(enemy, spawnPoint.transform.position, Quaternion.identity);
         }
     }
     void GameOver()

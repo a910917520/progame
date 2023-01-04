@@ -14,10 +14,18 @@ public class Stats : MonoBehaviour
     private float canHit;
     private bool isPoison;
     private bool isSlow;
+    [SerializeField] private bool isAltar;
 
     private void Awake()
     {
         maxHp = hp;
+    }
+    private void Start()
+    {
+        if (isAltar)
+        {
+            StartCoroutine(AltarAttack());
+        }
     }
     private void Update()
     {
@@ -248,5 +256,26 @@ public class Stats : MonoBehaviour
         {
             //GameOver
         }
+    }
+    IEnumerator AltarAttack()
+    {
+
+        do
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.transform.position, 1.6f);
+            foreach (Collider2D enemy in colliders)
+            {
+                if (enemy.tag == ("Enemy"))
+                {
+                    enemy.GetComponent<Stats>().TakeDamage(30);
+                    if (enemy.GetComponent<Stats>().hp <= 0)
+                    {
+                        enemy.gameObject.SetActive(false);
+                        enemy.GetComponent<Stats>().Invoke("DestroyObject", 2f);
+                    }
+                }
+            }
+            yield return new WaitForSeconds(3f);
+        } while (gameObject.activeSelf);
     }
 }

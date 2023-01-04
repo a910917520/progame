@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
     private GameObject altar;
     private GameObject waypoint;
     private float speed;
+    private Animator anim;
 
     private int currentWP = 0;
     public float preDistance = 0.5f;
@@ -15,12 +16,14 @@ public class EnemyAI : MonoBehaviour
     {
         waypoint = GameObject.Find("Waypoint");
         speed = gameObject.GetComponent<Stats>().speed;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Chase();
+        anim.SetBool("isWalk", true);
     }
     void Chase()
     {

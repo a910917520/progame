@@ -48,7 +48,7 @@ public class ChestController : MonoBehaviour
     {
         isOpen = false;
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        int item = Random.Range(1, 4);
+        int item = Random.Range(1, 5);
         if (item == 1) //月之指
         {
             if (GameData.item1_lv < 4)
@@ -121,7 +121,7 @@ public class ChestController : MonoBehaviour
     {
         isOpen = false;
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        int weapon = Random.Range(1, 12);
+        int weapon = Random.Range(1, 13);
 
         if (weapon == 1) //精靈之矢
         {

@@ -1563,6 +1563,7 @@ MonoBehaviour:
   score: 100
   hitRate: 0.3
   fireRate: 0.8
+  isAltar: 0
 --- !u!1 &701785059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,13 +1688,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511175bac8c83b14fb1899fbf2df5165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 200
-  hp: 200
+  maxHp: 100
+  hp: 100
   damage: 0
   speed: 0
   score: 0
   hitRate: 0.2
   fireRate: 0
+  isAltar: 1
 --- !u!50 &701785064
 Rigidbody2D:
   serializedVersion: 4
