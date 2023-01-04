@@ -76,7 +76,15 @@ public class Stats : MonoBehaviour
             hp = 0;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public float GetScore()
+    {
+        return score;
+    }
+    public void CostScore(float cost)
+    {
+        score = score - cost;
+    }
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (this.gameObject.tag == "Player" || this.gameObject.tag == "Altar")
         {
@@ -91,6 +99,7 @@ public class Stats : MonoBehaviour
                         if (hp <= 0)
                         {
                             gameObject.SetActive(false);
+                            Invoke("ReviveOrDie", 3f);
                         }
                     }
                 }
@@ -100,6 +109,7 @@ public class Stats : MonoBehaviour
                     if (hp <= 0)
                     {
                         gameObject.SetActive(false);
+                        Invoke("ReviveOrDie", 3f);
                     }
                 }
             }
@@ -223,6 +233,20 @@ public class Stats : MonoBehaviour
                     Invoke("DestroyObject", 2f);
                 }
             }
+        }
+    }
+    void ReviveOrDie()
+    {
+        if (score >= 100)
+        {
+            score = score - 100;
+            transform.position = new Vector2(-18, -0.3f);
+            gameObject.SetActive(true);
+            hp = maxHp;
+        }
+        if (score < 100)
+        {
+            //GameOver
         }
     }
 }

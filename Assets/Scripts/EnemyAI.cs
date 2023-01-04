@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private GameObject player;
     private GameObject altar;
     private GameObject waypoint;
     private float speed;
@@ -14,8 +13,6 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        altar = GameObject.Find("Altar");
         waypoint = GameObject.Find("Waypoint");
         speed = gameObject.GetComponent<Stats>().speed;
     }
@@ -25,52 +22,66 @@ public class EnemyAI : MonoBehaviour
     {
         Chase();
     }
-    public GameObject GetPlayer()
-    {
-        return player;
-    }
-    public GameObject GetAltar()
-    {
-        return altar;
-    }
-    public GameObject GetWaypoint()
-    {
-        return waypoint;
-    }
     void Chase()
     {
-        if (GameObject.Find("Altar") != null&& Vector3.Distance(altar.transform.position, transform.position) < 4)
+        if (GameObject.Find("Altar") != null)
         {
-            Vector3 direction = (altar.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+            if(Vector3.Distance(GameObject.Find("Altar").transform.position, transform.position) < 4)
+            {
+                Vector3 direction = (GameObject.Find("Altar").transform.position - transform.position).normalized;
+                //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                //GetComponent<Rigidbody2D>().rotation = angle;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+            }
+            else if (GameObject.Find("Player")!=null)
+            {
+                if (Vector3.Distance(GameObject.Find("Player").transform.position, transform.position) < 3)
+                {
+                    Vector3 direction = (GameObject.Find("Player").transform.position - transform.position).normalized;
+                    //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    //GetComponent<Rigidbody2D>().rotation = angle;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+                    currentWP = 1;
+                }
+                else if (currentWP == 0 && Vector3.Distance(waypoint.transform.position, transform.position) > preDistance)
+                {
+                    Vector3 direction = (waypoint.transform.position - transform.position).normalized;
+                    //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    //GetComponent<Rigidbody2D>().rotation = angle;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+                }
+                else if (currentWP == 0)
+                {
+                    currentWP++;
+                }
+                else if (currentWP == 1 && GameObject.Find("Altar") != null)
+                {
+                    Vector3 direction = (GameObject.Find("Altar").transform.position - transform.position).normalized;
+                    //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    //GetComponent<Rigidbody2D>().rotation = angle;
+                    GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+                }
+            }
+            else if (currentWP == 0 && Vector3.Distance(waypoint.transform.position, transform.position) > preDistance)
+            {
+                Vector3 direction = (waypoint.transform.position - transform.position).normalized;
+                //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                //GetComponent<Rigidbody2D>().rotation = angle;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+            }
+            else if (currentWP == 0)
+            {
+                currentWP++;
+            }
+            else if (currentWP == 1 && GameObject.Find("Altar") != null)
+            {
+                Vector3 direction = (GameObject.Find("Altar").transform.position - transform.position).normalized;
+                //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                //GetComponent<Rigidbody2D>().rotation = angle;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
+            }
         }
-        else if (GameObject.Find("Player") != null&& Vector3.Distance(player.transform.position, transform.position) < 3)
-        {
-            Vector3 direction = (player.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
-            currentWP = 1;
-        }
-        else if (currentWP == 0 && Vector3.Distance(waypoint.transform.position, transform.position) > preDistance)
-        {
-            Vector3 direction = (waypoint.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
-        }
-        else if (currentWP == 0)
-        {
-            currentWP++;
-        }
-        else if (currentWP == 1 && GameObject.Find("Altar") != null)
-        {
-            Vector3 direction = (altar.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            GetComponent<Rigidbody2D>().rotation = angle;
-            GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y) * speed;
-        }
+        
+        
     }
 }

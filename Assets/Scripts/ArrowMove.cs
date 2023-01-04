@@ -8,18 +8,23 @@ public class ArrowMove : MonoBehaviour
     private Vector3 mousePos;
     private Camera mainCam;
     private Rigidbody2D rb;
-    [SerializeField] private float time; 
+    [SerializeField] private bool directionChange;
+    [SerializeField] private float time;
 
     // Start is called before the first frame update
     void Awake()
     {
-
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePos - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
-        
+    }
+    void Start()
+    {
+        if (!directionChange)
+        {
+            Vector2 direction = mousePos - transform.position;
+            rb.velocity = new Vector2(direction.x, direction.y).normalized * speed;
+        }
     }
 
     // Update is called once per frame

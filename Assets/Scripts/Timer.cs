@@ -24,10 +24,13 @@ public class Timer : MonoBehaviour
     public int stage;
     private bool isSafe;
     private int enemyCount;
+    private bool isGameOver;
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = 10;
+        isGameOver = false;
+        currentTime = 99999;
+        timerText.enabled = (false);
         stage = 1;
         countDown = true;
         isSafe = true;
@@ -39,6 +42,7 @@ public class Timer : MonoBehaviour
         CountEnemy();
         GameTimer();
         DisplayTime(currentTime);
+        GameOver();
     }
     void DisplayTime(float timeToDisplay)
     {
@@ -372,6 +376,25 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(interval);
             time -= interval;
             Instantiate(enemy, spawnPoint.transform.position, Quaternion.identity);
+        }
+    }
+    void GameOver()
+    {
+        if (!isGameOver)
+        {
+            float score = player.GetComponent<Stats>().GetScore();
+            if (score < 100 && GameObject.Find("Player") == null)
+            {
+                Debug.Log("GameOver");
+                isGameOver = true;
+                //GameOver
+            }
+            if (GameObject.Find("Altar") == null)
+            {
+                Debug.Log("GameOver");
+                isGameOver = true;
+                //GameOver
+            }
         }
     }
 }

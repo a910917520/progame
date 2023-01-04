@@ -29,6 +29,8 @@ static class GameData
     public static int item4_lv = 0;
     //public static int item5_lv = 0;
 
+    public static int weaponNum = 0;
+
     public static float Arrow_lv = 0;
     public static float WindArrow_lv = 0;
     public static float LightningArrow_lv = 0;
@@ -44,8 +46,6 @@ static class GameData
 
 
     //equipments
-    public static bool windArrow = false;
-    public static bool iceArrow = false;
     public static void Updata()
     {
         player_maxHealth = player_health + hp_bonus;
