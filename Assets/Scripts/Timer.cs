@@ -391,7 +391,7 @@ public class Timer : MonoBehaviour
         if (!isGameOver)
         {
             float score = player.GetComponent<Stats>().GetScore();
-            if (score < 100 && GameObject.Find("Player") == null)
+            if (score < 1000 && GameObject.Find("Player") == null)
             {
                 Debug.Log("GameOver");
                 isGameOver = true;

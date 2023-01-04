@@ -237,14 +237,14 @@ public class Stats : MonoBehaviour
     }
     void ReviveOrDie()
     {
-        if (score >= 100)
+        if (score >= 1000)
         {
-            score = score - 100;
+            score = score - 1000;
             transform.position = new Vector2(-18, -0.3f);
             gameObject.SetActive(true);
             hp = maxHp;
         }
-        if (score < 100)
+        if (score < 1000)
         {
             //GameOver
         }
