@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Timer : MonoBehaviour
@@ -130,6 +131,10 @@ public class Timer : MonoBehaviour
                 stageText.text = ("Stage " + stage);
                 Stage_5();
                 isSafe = false;
+            }
+            if (stage == 6)
+            {
+                SceneManager.LoadScene("Ending");
             }
         }
     }
