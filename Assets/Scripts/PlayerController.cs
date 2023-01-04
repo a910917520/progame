@@ -472,7 +472,7 @@ public class PlayerController : MonoBehaviour
 
                     float startAngle = -30f;
 
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 6; i++)
 
                     {
 
@@ -496,7 +496,7 @@ public class PlayerController : MonoBehaviour
 
                     float startAngle = -30f;
 
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 6; i++)
 
                     {
 
@@ -520,7 +520,7 @@ public class PlayerController : MonoBehaviour
 
                     float startAngle = -40f;
 
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 8; i++)
 
                     {
 

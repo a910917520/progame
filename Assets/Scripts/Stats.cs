@@ -238,7 +238,7 @@ public class Stats : MonoBehaviour
                 if (enemy.GetComponent<Stats>().hp <= 0)
                 {
                     enemy.gameObject.SetActive(false);
-                    Invoke("DestroyObject", 2f);
+                    enemy.GetComponent<Stats>().Invoke("DestroyObject", 2f);
                 }
             }
         }

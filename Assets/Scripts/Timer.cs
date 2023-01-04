@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -388,7 +389,7 @@ public class Timer : MonoBehaviour
         {
             yield return new WaitForSeconds(interval);
             time -= interval;
-            if (enemyCount <= 100)
+            if (enemyCount <= 250)
                 Instantiate(enemy, spawnPoint.transform.position, Quaternion.identity);
         }
     }
@@ -401,14 +402,30 @@ public class Timer : MonoBehaviour
             {
                 Debug.Log("GameOver");
                 isGameOver = true;
-                //GameOver
+                StartCoroutine(GameOverImage());
             }
             if (GameObject.Find("Altar") == null)
             {
                 Debug.Log("GameOver");
                 isGameOver = true;
-                //GameOver
+                StartCoroutine(GameOverImage());
             }
         }
+    }
+    IEnumerator GameOverImage()
+    {
+        for (float colorTime = Time.deltaTime; colorTime <= 1; colorTime += Time.deltaTime)
+        {
+            GameObject.Find("GameOverImage").GetComponent<Image>().color = Color.Lerp(new Color32(255, 255, 255, 0), new Color32(255, 255, 255, 255), colorTime);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(3f);
+        for (float colorTime = Time.deltaTime; colorTime <= 1; colorTime += Time.deltaTime)
+        {
+            GameObject.Find("GameOverImage").GetComponent<Image>().color = Color.Lerp(new Color32(255, 255, 255, 255), Color.black, colorTime);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Menu");
     }
 }

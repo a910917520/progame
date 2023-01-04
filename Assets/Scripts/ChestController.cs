@@ -15,7 +15,11 @@ public class ChestController : MonoBehaviour
             float playerScore = GameObject.Find("Player").GetComponent<Stats>().GetScore();
             if (methodName == "GetItem")
             {
-                if (playerScore >= 50)
+                if (GameData.item1_lv >= 4 && GameData.item2_lv >= 4 && GameData.item3_lv >= 4 && GameData.item4_lv >= 4)
+                {
+                    popup.AddToQueue("能力已達上限");
+                }
+                else if (playerScore >= 50)
                 {
                     GameObject.Find("Player").GetComponent<Stats>().CostScore(50);
                     Invoke(methodName, 2f);
@@ -140,7 +144,6 @@ public class ChestController : MonoBehaviour
                 else
 
                 {
-
                     GameData.weaponNum++;
 
                     GameData.Arrow_lv++;
@@ -153,7 +156,6 @@ public class ChestController : MonoBehaviour
             {
 
                 GameData.Arrow_lv++;
-
                 popup.AddToQueue("獲得精靈之矢(Lv." + GameData.Arrow_lv + ")");
 
             }
@@ -161,7 +163,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(精靈之矢)已達最高級");
 
             }
         }
@@ -204,7 +206,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(風之箭矢)已達最高級");
 
             }
         }
@@ -247,7 +249,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(雷之箭矢)已達最高級");
 
             }
         }
@@ -290,7 +292,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(火之箭矢)已達最高級");
 
             }
         }
@@ -333,7 +335,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(冰之箭矢)已達最高級");
 
             }
         }
@@ -376,7 +378,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(春之箭)已達最高級");
 
             }
         }
@@ -419,7 +421,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(夏之箭)已達最高級");
 
             }
         }
@@ -462,7 +464,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(秋之箭)已達最高級");
 
             }
         }
@@ -505,7 +507,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(冬之箭)已達最高級");
 
             }
         }
@@ -548,7 +550,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(日之箭)已達最高級");
 
             }
         }
@@ -591,7 +593,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(月之箭)已達最高級");
 
             }
         }
@@ -634,7 +636,7 @@ public class ChestController : MonoBehaviour
 
             {
 
-                popup.AddToQueue("武器已達最高級");
+                popup.AddToQueue("武器(星之箭)已達最高級");
 
             }
         }
