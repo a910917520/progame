@@ -9,7 +9,7 @@ public class ArrowStats : MonoBehaviour
     [SerializeField] private int arrow_num; //箭矢數量
     [SerializeField] private bool penetrate; //有無穿透
     [SerializeField] private bool hasEffect; //有無特殊效果
-    [SerializeField] private enum effects {poison,slow,explosion};
+    [SerializeField] private enum effects {poison,slow,explosion,fire};
     [SerializeField] private effects effect;
 
     public void SetMultiplier(float number)

@@ -154,6 +154,10 @@ public class Stats : MonoBehaviour
                                 {
                                     Explosion(collision.gameObject, finalDamage* 0.5f + (GameData.SummerArrow_lv - 1));
                                 }
+                                if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 3)
+                                {
+                                    Explosion(collision.gameObject, finalDamage * 0.5f + (GameData.FireArrow_lv - 1));
+                                }
                             }
                             if (!collision.gameObject.GetComponent<ArrowStats>().IsPenetrate())
                             {
@@ -192,6 +196,10 @@ public class Stats : MonoBehaviour
                         if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 2)
                         {
                             Explosion(collision.gameObject, finalDamage * (0.5f + (GameData.SummerArrow_lv - 1)));
+                        }
+                        if (collision.gameObject.GetComponent<ArrowStats>().FindEffect() == 3)
+                        {
+                            Explosion(collision.gameObject, finalDamage * 0.5f + (GameData.FireArrow_lv - 1));
                         }
                     }
                     if (!collision.gameObject.GetComponent<ArrowStats>().IsPenetrate())

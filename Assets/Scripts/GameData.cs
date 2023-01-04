@@ -61,5 +61,44 @@ static class GameData
         speed = current_player_speed;
         fireRate = current_player_fireRate;
     }
+    public static void GameRestart()
+    {
+        Arrow_lv = 0;
+        WindArrow_lv = 0;
+        LightningArrow_lv = 0;
+        FireArrow_lv = 0;
+        IceArrow_lv = 0;
+        SpringArrow_lv = 0;
+        SummerArrow_lv = 0;
+        AutumnArrow_lv = 0;
+        WinterArrow_lv = 0;
+        SunArrow_lv = 0;
+        MoonArrow_lv = 0;
+        StarArrow_lv = 0;
+
+        player_health = 10;
+        player_maxHealth = 10;
+        player_damage = 10;
+        player_fireRate = 1;
+        player_speed = 2.5f;
+
+        current_player_health = 10;
+        current_player_damage = 10;
+        current_player_fireRate = 1;
+        current_player_speed = 2.5f;
+
+        damage_bonus = 0;
+        hp_bonus = 0;
+        speed_bonus = 0;
+        fireRate_bonus = 0;
+
+
+        item1_lv = 0;
+        item2_lv = 0;
+        item3_lv = 0;
+        item4_lv = 0;
+
+        Updata();
+    }
 }
 

@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     void Start()
 
     {
+        GameData.GameRestart();
 
         GameData.Arrow_lv = 0;
 
