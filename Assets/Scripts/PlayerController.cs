@@ -598,7 +598,7 @@ public class PlayerController : MonoBehaviour
 
                 float arrowNum = 4 * GameData.SunArrow_lv;
 
-                float angleStep = 360f / 4f;
+                float angleStep = 360f / arrowNum;
 
                 float startAngle = 0f;
 
