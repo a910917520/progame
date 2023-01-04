@@ -1314,7 +1314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &521690490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ MonoBehaviour:
   speed: 2.5
   score: 100
   hitRate: 0.3
-  fireRate: 1
+  fireRate: 0.8
 --- !u!1 &701785059
 GameObject:
   m_ObjectHideFlags: 0
