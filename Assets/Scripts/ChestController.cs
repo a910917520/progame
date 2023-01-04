@@ -54,9 +54,13 @@ public class ChestController : MonoBehaviour
             if (GameData.item1_lv < 4)
             {
                 GameData.item1_lv++;
-                GameData.damage_bonus = GameData.damage_bonus + 1;
+                GameData.damage_bonus = GameData.item1_lv + 2;
                 GameData.Updata();
                 popup.AddToQueue("獲得 月之指 Lv." + GameData.item1_lv);
+            }
+            else
+            {
+                popup.AddToQueue("等級已滿");
             }
         }
         if (item == 2) //月之髮
@@ -68,6 +72,10 @@ public class ChestController : MonoBehaviour
                 GameData.Updata();
                 popup.AddToQueue("獲得 月之髮 Lv." + GameData.item2_lv);
             }
+            else
+            {
+                popup.AddToQueue("等級已滿");
+            }
         }
         if (item == 3) //月之翼
         {
@@ -78,6 +86,10 @@ public class ChestController : MonoBehaviour
                 GameData.Updata();
                 popup.AddToQueue("獲得 月之翼 Lv." + GameData.item3_lv);
             }
+            else
+            {
+                popup.AddToQueue("等級已滿");
+            }
         }
         if (item == 4) //月之眼
         {
@@ -87,6 +99,10 @@ public class ChestController : MonoBehaviour
                 GameData.fireRate_bonus = GameData.fireRate_bonus + 0.1f;
                 GameData.Updata();
                 popup.AddToQueue("獲得 月之眼 Lv." + GameData.item4_lv);
+            }
+            else
+            {
+                popup.AddToQueue("等級已滿");
             }
         }
         /*if (item == 5) //月之耳
@@ -117,7 +133,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -160,7 +176,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -203,7 +219,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -246,7 +262,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -289,7 +305,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -332,7 +348,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -375,7 +391,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -418,7 +434,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -461,7 +477,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -504,7 +520,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -547,7 +563,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
@@ -590,7 +606,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    popup.AddToQueue("武器已滿");
+                    popup.AddToQueue("強化失敗");
 
                 }
 
