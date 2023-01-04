@@ -64,8 +64,16 @@ public class Timer : MonoBehaviour
     }
     void CountEnemy()
     {
-        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        enemyCount = enemies.Length;
         enemyLeftText.text = (enemyCount + " LEFT");
+        if (currentTime <= 0)
+        {
+            foreach(GameObject enemy in enemies)
+            {
+                Destroy(enemy);
+            }
+        }
     }
     void StageClear()
     {
