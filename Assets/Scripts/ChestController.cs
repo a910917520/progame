@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChestController : MonoBehaviour
 {
     public bool isOpen;
+    [SerializeField] private PopupWindow popup;
     public void OpenChest(string methodName)
     {
         if (!isOpen)
@@ -18,12 +20,11 @@ public class ChestController : MonoBehaviour
                     GameObject.Find("Player").GetComponent<Stats>().CostScore(50);
                     Invoke(methodName, 2f);
                     isOpen = true;
-                    Debug.Log("Chest is now open...");
                     gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                 }
                 else
                 {
-                    Debug.Log("金錢不足");
+                    popup.AddToQueue("金錢不足");
                 }
             }
             if (methodName == "GetWeapon")
@@ -33,12 +34,11 @@ public class ChestController : MonoBehaviour
                     GameObject.Find("Player").GetComponent<Stats>().CostScore(20);
                     Invoke(methodName, 2f);
                     isOpen = true;
-                    Debug.Log("Chest is now open...");
                     gameObject.GetComponent<SpriteRenderer>().color = Color.green;
                 }
                 else
                 {
-                    Debug.Log("金錢不足");
+                    popup.AddToQueue("金錢不足");
                 }
             }
 
@@ -56,7 +56,7 @@ public class ChestController : MonoBehaviour
                 GameData.item1_lv++;
                 GameData.damage_bonus = GameData.damage_bonus + 1;
                 GameData.Updata();
-                Debug.Log("獲得" + item + "(Lv." + GameData.item1_lv + ")");
+                popup.AddToQueue("獲得 月之指 Lv." + GameData.item1_lv);
             }
         }
         if (item == 2) //月之髮
@@ -66,8 +66,7 @@ public class ChestController : MonoBehaviour
                 GameData.item2_lv++;
                 GameData.hp_bonus = GameData.hp_bonus + 10;
                 GameData.Updata();
-
-                Debug.Log("獲得" + item + "(Lv." + GameData.item2_lv + ")");
+                popup.AddToQueue("獲得 月之髮 Lv." + GameData.item2_lv);
             }
         }
         if (item == 3) //月之翼
@@ -77,8 +76,7 @@ public class ChestController : MonoBehaviour
                 GameData.item3_lv++;
                 GameData.speed_bonus = GameData.speed_bonus + 1;
                 GameData.Updata();
-
-                Debug.Log("獲得" + item + "(Lv." + GameData.item3_lv + ")");
+                popup.AddToQueue("獲得 月之翼 Lv." + GameData.item3_lv);
             }
         }
         if (item == 4) //月之眼
@@ -88,8 +86,7 @@ public class ChestController : MonoBehaviour
                 GameData.item4_lv++;
                 GameData.fireRate_bonus = GameData.fireRate_bonus + 0.1f;
                 GameData.Updata();
-
-                Debug.Log("獲得" + item + "(Lv." + GameData.item4_lv + ")");
+                popup.AddToQueue("獲得 月之眼 Lv." + GameData.item4_lv);
             }
         }
         /*if (item == 5) //月之耳
@@ -99,7 +96,7 @@ public class ChestController : MonoBehaviour
                 GameData.item2_lv++;
                 GameData.cooldown_bonus = GameData.cooldown_bonus + 10;
                 GameData.Updata();
-                Debug.Log("獲得" + item + "(Lv." + GameData.item5_lv + ")");
+                popup.AddToQueue("獲得" + item + "(Lv." + GameData.item5_lv + ")");
             }
         }*/
     }
@@ -120,7 +117,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -131,7 +128,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.Arrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得精靈之矢");
                 }
 
             }
@@ -141,14 +138,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.Arrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.Arrow_lv + ")");
+                popup.AddToQueue("獲得精靈之矢(Lv." + GameData.Arrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -163,7 +160,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -174,7 +171,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.WindArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得風之箭矢");
                 }
 
             }
@@ -184,14 +181,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.WindArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.WindArrow_lv + ")");
+                popup.AddToQueue("獲得風之箭矢(Lv." + GameData.WindArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -206,7 +203,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -217,7 +214,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.LightningArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得雷之箭矢");
                 }
 
             }
@@ -227,14 +224,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.LightningArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.LightningArrow_lv + ")");
+                popup.AddToQueue("獲得雷之箭矢(Lv." + GameData.LightningArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -249,7 +246,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -260,7 +257,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.FireArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得火之箭矢");
                 }
 
             }
@@ -270,14 +267,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.FireArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.FireArrow_lv + ")");
+                popup.AddToQueue("獲得火之箭矢(Lv." + GameData.FireArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -292,7 +289,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -303,7 +300,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.IceArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得冰之箭矢");
                 }
 
             }
@@ -313,14 +310,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.IceArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.IceArrow_lv + ")");
+                popup.AddToQueue("獲得冰之箭矢(Lv." + GameData.IceArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -335,7 +332,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -346,7 +343,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.SpringArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得春之箭");
                 }
 
             }
@@ -356,14 +353,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.SpringArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.SpringArrow_lv + ")");
+                popup.AddToQueue("獲得春之箭(Lv." + GameData.SpringArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -378,7 +375,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -389,7 +386,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.SummerArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得夏之箭");
                 }
 
             }
@@ -399,14 +396,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.SummerArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.SummerArrow_lv + ")");
+                popup.AddToQueue("獲得夏之箭(Lv." + GameData.SummerArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -421,7 +418,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -432,7 +429,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.AutumnArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得秋之箭");
                 }
 
             }
@@ -442,14 +439,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.AutumnArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.AutumnArrow_lv + ")");
+                popup.AddToQueue("獲得秋之箭(Lv." + GameData.AutumnArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -464,7 +461,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -475,7 +472,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.WinterArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得冬之箭");
                 }
 
             }
@@ -485,14 +482,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.WinterArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.WinterArrow_lv + ")");
+                popup.AddToQueue("獲得冬之箭(Lv." + GameData.WinterArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -507,7 +504,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -518,7 +515,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.SunArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得日之箭");
                 }
 
             }
@@ -528,14 +525,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.SunArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.SunArrow_lv + ")");
+                popup.AddToQueue("獲得日之箭(Lv." + GameData.SunArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -550,7 +547,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -561,7 +558,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.MoonArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得月之箭");
                 }
 
             }
@@ -571,14 +568,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.MoonArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.MoonArrow_lv + ")");
+                popup.AddToQueue("獲得月之箭(Lv." + GameData.MoonArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }
@@ -593,7 +590,7 @@ public class ChestController : MonoBehaviour
 
                 {
 
-                    Debug.Log("武器已滿");
+                    popup.AddToQueue("武器已滿");
 
                 }
 
@@ -604,7 +601,7 @@ public class ChestController : MonoBehaviour
                     GameData.weaponNum++;
 
                     GameData.StarArrow_lv++;
-                    Debug.Log("獲得" + weapon);
+                    popup.AddToQueue("獲得星之箭");
                 }
 
             }
@@ -614,14 +611,14 @@ public class ChestController : MonoBehaviour
 
                 GameData.StarArrow_lv++;
 
-                Debug.Log("獲得" + weapon + "(Lv." + GameData.StarArrow_lv + ")");
+                popup.AddToQueue("獲得星之箭(Lv." + GameData.StarArrow_lv + ")");
 
             }
             else
 
             {
 
-                Debug.Log("武器已達最高級");
+                popup.AddToQueue("武器已達最高級");
 
             }
         }

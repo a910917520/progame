@@ -95,6 +95,7 @@ public class Timer : MonoBehaviour
             cam2.SetActive(false);
             player.transform.position = new Vector2(-18, -0.3f);
             cam1.SetActive(true);
+            player.GetComponent<Stats>().Heal();
             if (stage == 1)
             {
                 currentTime = 60;

@@ -98,15 +98,15 @@ public class PlayerController : MonoBehaviour
 
         GameData.SummerArrow_lv = 0;
 
-        GameData.AutumnArrow_lv = 1;
+        GameData.AutumnArrow_lv = 0;
 
         GameData.WinterArrow_lv = 0;
 
-        GameData.SunArrow_lv = 1;
+        GameData.SunArrow_lv = 0;
 
         GameData.MoonArrow_lv = 0;
 
-        GameData.StarArrow_lv = 1;
+        GameData.StarArrow_lv = 0;
 
         anim = GetComponent<Animator>();
 
@@ -155,6 +155,8 @@ public class PlayerController : MonoBehaviour
             Attack();
 
             StartCoroutine(WindAttack());
+
+            FireAttack();
 
             IceAttack();
 
@@ -335,7 +337,23 @@ public class PlayerController : MonoBehaviour
     void FireAttack()
 
     {
+        if (GameData.FireArrow_lv > 0)
 
+        {
+
+            if (Time.time - canFireArrowFire > 3 / fireRate)
+
+            {
+
+                GameObject arrowObj = Instantiate(fire_arrow, arrowPos.transform.position, arrowPos.transform.rotation);
+
+                arrowObj.GetComponent<ArrowStats>().SetMultiplier(1 + GameData.FireArrow_lv);
+
+                canFireArrowFire = Time.time;
+
+            }
+
+        }
 
 
     }
@@ -658,7 +676,7 @@ public class PlayerController : MonoBehaviour
 
     {
 
-        if (GameData.Arrow_lv > 0 || GameData.WindArrow_lv > 0 || GameData.IceArrow_lv > 0 ||
+        if (GameData.Arrow_lv > 0 || GameData.WindArrow_lv > 0 || GameData.FireArrow_lv > 0 || GameData.IceArrow_lv > 0 ||
 
             GameData.LightningArrow_lv > 0 || GameData.SpringArrow_lv > 0 || GameData.SummerArrow_lv > 0 ||
 
